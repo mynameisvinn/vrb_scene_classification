@@ -50,5 +50,9 @@ if __name__ == '__main__':
 
     test_image = caffe.io.load_image(sys.argv[1])
     predictions = classify_scene(MODEL_TYPE, WEIGHTS, LABELS, MEAN, test_image)
+
+    with open(LABELS, 'rb') as f:
+        labels = pickle.load(f)
+        
     for i, k in enumerate(predictions):
         print i, labels[k]
